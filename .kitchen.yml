@@ -12,7 +12,7 @@ platforms:
     driver_config:
       box: chef/centos-6.5
       customize:
-        memory: 512
+        memory: 768
         cpuexecutioncap: 50
 
 suites:

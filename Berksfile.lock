@@ -1,0 +1,10 @@
+DEPENDENCIES
+  build-essential
+  python
+    path: .
+    metadata: true
+
+GRAPH
+  build-essential (2.0.4)
+  python (0.1.0)
+    build-essential (>= 0.0.0)

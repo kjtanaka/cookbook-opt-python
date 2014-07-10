@@ -30,15 +30,15 @@ end
 
 directory "/opt" do
   owner "root"
-  user "root"
-  mode "0644"
+  group "root"
+  mode "0755"
   action :create
 end
 
 directory "/root/source" do
   owner "root"
-  user "root"
-  mode "0644"
+  group "root"
+  mode "0750"
   action :create
 end
 

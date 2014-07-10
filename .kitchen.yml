@@ -19,6 +19,8 @@ suites:
   - name: default
     run_list:
       - recipe[python::default]
+      - recipe[environment-modules::default]
+      - recipe[python::modulefile]
     attributes: {}
   - name: modulefile
     run_list:

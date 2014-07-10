@@ -7,7 +7,7 @@ proc moduleVersion { } {
 }
 
 set ver        [moduleVersion]
-set path       /opt/python-$ver
+set path       <%= @python_install_dir %>/python-$ver
 
 proc ModulesHelp { } {
    puts stderr "This module adds the Python interpeter to various paths"

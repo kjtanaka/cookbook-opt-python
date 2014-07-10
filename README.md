@@ -1,23 +1,15 @@
 python Cookbook
 ===============
-TODO: Enter the cookbook description here.
-
-e.g.
-This cookbook makes your favorite breakfast sandwich.
+This cookbook installs python from source.
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
 
-e.g.
-#### packages
-- `toaster` - python needs toaster to brown your bagel.
+#### platforms
+- CentOS 6.5 is supported and tested.
 
 Attributes
 ----------
-TODO: List your cookbook attributes here.
-
-e.g.
 #### python::default
 <table>
   <tr>
@@ -27,19 +19,28 @@ e.g.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['python']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td><tt>['python']['version']</tt></td>
+    <td>Text</td>
+    <td>Python version</td>
+    <td><tt>2.7.8</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['python']['install_dir']</tt></td>
+    <td>Text</td>
+    <td>Directory to install</td>
+    <td><tt>/opt</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['python']['download_dir']</tt></td>
+    <td>Text</td>
+    <td>Directory to download source code</td>
+    <td><tt>/root/source</tt></td>
   </tr>
 </table>
 
 Usage
 -----
 #### python::default
-TODO: Write usage instructions for each cookbook.
-
-e.g.
 Just include `python` in your node's `run_list`:
 
 ```json
@@ -51,11 +52,26 @@ Just include `python` in your node's `run_list`:
 }
 ```
 
+#### python::modulefile
+If you have [Environment Modules](http://modules.sourceforge.net/) on your machine, include `python::modulefile` in your node's `run_list` and set attrubutes, `modulefile_dir` and `default_version`:
+
+```json
+{
+  "name":"my_node",
+  "run_list": [
+    "recipe[python::modulefile]"
+  ],
+  "python": {
+    "modulefile_dir": "/opt/module-3.2.10/Module/3.2.10/modulefile/tools/python",
+    "default_version": "2.7.8"
+  }
+}
+```
+
+
 Contributing
 ------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
 
-e.g.
 1. Fork the repository on Github
 2. Create a named feature branch (like `add_component_x`)
 3. Write your change
@@ -65,4 +81,20 @@ e.g.
 
 License and Authors
 -------------------
-Authors: TODO: List authors
+- Author:: Koji Tanaka (<kj.tanaka@gmail.com>)
+
+```text
+Copyright 2014, FutureGrid, Indiana Univercity
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```

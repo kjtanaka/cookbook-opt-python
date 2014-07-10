@@ -18,20 +18,23 @@
 # limitations under the License.
 #
 
-directory "/opt/modules-3.2.10/Modules/3.2.10/modulefiles/python" do
+directory node['python']['modulefile_dir'] do
   owner "root"
   group "root"
   mode "0755"
   action :create
 end
 
-template "/opt/modules-3.2.10/Modules/3.2.10/modulefiles/python/2.7.8" do
+template "#{node['python']['modulefile_dir']}/#{node['python']['version']}" do
   source "modulefile.erb"
+  variables(
+    :python_install_dir => node['python']['install_dir']
+  )
 end
 
-template "/opt/modules-3.2.10/Modules/3.2.10/modulefiles/python/.version" do
+template "#{node['python']['modulefile_dir']}/.version" do
   source "dot.version.erb"
   variables(
-    :python_default_version => "2.7.8"
+    :python_default_version => node['python']['default_version']
   )
 end

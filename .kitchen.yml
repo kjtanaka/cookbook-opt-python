@@ -19,10 +19,18 @@ suites:
   - name: default
     run_list:
       - recipe[python::default]
+    attributes: {}
+  - name: python3
+    run_list:
+      - recipe[python::default]
+    attributes: {
+      "python": {
+        "version": "3.4.1"
+      }
+    }
+  - name: with-module
+    run_list:
+      - recipe[python::default]
       - recipe[environment-modules::default]
       - recipe[python::modulefile]
-    attributes: {}
-  - name: modulefile
-    run_list:
-      - recipe[environment-modules::default]
     attributes: {}

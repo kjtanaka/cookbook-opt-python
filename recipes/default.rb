@@ -18,52 +18,5 @@
 # limitations under the License.
 #
 
-include_recipe 'build-essential'
-
-packages = %w[zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel]
-
-packages.each do |pkg|
-  package pkg do
-    action :install
-  end
-end
-
-directory "/opt" do
-  owner "root"
-  group "root"
-  mode "0755"
-  action :create
-end
-
-directory "/root/source" do
-  owner "root"
-  group "root"
-  mode "0750"
-  action :create
-end
-
-remote_file "/root/source/Python-2.7.8.tgz" do
-  source "http://www.python.org/ftp/python/2.7.8/Python-2.7.8.tgz"
-  owner "root"
-  group "root"
-  mode "0644"
-  action :create_if_missing
-end
-
-execute "extract_tarball" do
-  cwd "/root/source"
-  command "tar zxf Python-2.7.8.tgz"
-  creates "Python-2.7.8"
-end
-
-script "make_install" do
-  interpreter "bash"
-  cwd "/root/source/Python-2.7.8"
-  code <<-EOH
-  ./configure --prefix=/opt/python-2.7.8
-  make
-  make install
-  EOH
-  creates "/opt/python-2.7.8"
-end
-
+include_recipe "build-essential"
+include_recipe "python::_source"

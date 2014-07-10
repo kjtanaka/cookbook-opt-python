@@ -62,7 +62,7 @@ If you have [Environment Modules](http://modules.sourceforge.net/) on your machi
     "recipe[python::modulefile]"
   ],
   "python": {
-    "modulefile_dir": "/opt/module-3.2.10/Module/3.2.10/modulefile/tools/python",
+    "modulefiles_dir": "/opt/module-3.2.10/Module/3.2.10/modulefile/tools",
     "default_version": "2.7.8"
   }
 }

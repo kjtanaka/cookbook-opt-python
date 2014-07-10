@@ -32,7 +32,7 @@ template "#{node['python']['modulefiles_dir']}/python/#{node['python']['version'
   )
 end
 
-template "#{node['python']['modulefiles_dir']}/.version" do
+template "#{node['python']['modulefiles_dir']}/python/.version" do
   source "dot.version.erb"
   variables(
     :python_default_version => node['python']['default_version']

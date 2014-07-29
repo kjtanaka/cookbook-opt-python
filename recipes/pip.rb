@@ -24,3 +24,14 @@ remote_file "#{node['python']['download_dir']}/get-pip.py" do
   group "root"
   mode "0644"
 end
+
+execute "install_pip" do
+  user "root"
+  cwd node['python']['download_dir']
+  command "python get-pip.py"
+  environment(
+    "PYTHONHOME" => "#{node['python']['install_dir']}/python-#{node['python']['version']}",
+    "PATH" => "#{node['python']['install_dir']}/python-#{node['python']['version']}/bin:$PATH"
+  )
+  creates "#{node['python']['install_dir']}/python-#{node['python']['version']}/bin/pip"
+end

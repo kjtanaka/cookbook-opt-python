@@ -35,4 +35,5 @@ execute "install_setuptools" do
     "PYTHONHOME" => "#{node['python']['install_dir']}/python-#{node['python']['version']}",
     "PATH" => "#{node['python']['install_dir']}/python-#{node['python']['version']}/bin:$PATH"
   )
+  creates "#{node['python']['install_dir']}/python-#{node['python']['version']}/bin/easy_install"
 end

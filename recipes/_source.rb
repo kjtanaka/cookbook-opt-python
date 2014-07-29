@@ -34,7 +34,7 @@ end
 directory node['python']['download_dir'] do
   owner "root"
   group "root"
-  mode "0750"
+  mode "0755"
   action :create
 end
 

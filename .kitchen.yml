@@ -36,3 +36,8 @@ suites:
       - recipe[python::default]
       - recipe[python::pip]
     attributes: {}
+  - name: cython
+    run_list:
+      - recipe[python::default]
+      - recipe[python::cython]
+    attributes: {}

@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: python
-# Recipe:: numpy
+# Recipe:: pandas
 # Author:: Koji Tanaka (<kj.tanaka@gmail.com>)
 #
 # Copyright 2014, FutureGrid Project, Indiana University
@@ -18,26 +18,14 @@
 # limitations under the License.
 #
 
-include_recipe 'python::cython'
+include_recipe 'python::numpy'
 
-package 'git'
-
-git "#{node['python']['download_dir']}/numpy" do
-  repository "https://github.com/numpy/numpy.git"
-  action :sync
-end
-
-bash "install_numpy" do
+execute "install_pandas" do
   user "root"
-  cwd "#{node['python']['download_dir']}/numpy"
-  code <<-EOH
-  python setup.py build
-  python setup.py install
-  EOH
+  command "pip install pandas"
   environment(
-    "LD_LIBRARY_PATH" => node['numpy']['ld_library_path'],
     "PYTHONHOME" => "#{node['python']['install_dir']}/python-#{node['python']['version']}",
     "PATH" => "#{node['python']['install_dir']}/python-#{node['python']['version']}/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin"
   )
-  creates "/opt/python-#{node['python']['version']}/lib/python2.7/site-packages/numpy"
+  creates "#{node['python']['install_dir']}/python-#{node['python']['version']}/lib/python2.7/site-packages/pandas"
 end

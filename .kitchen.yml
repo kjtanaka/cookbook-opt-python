@@ -41,3 +41,8 @@ suites:
       - recipe[python::default]
       - recipe[python::cython]
     attributes: {}
+  - name: numpy
+    run_list:
+      - recipe[python::default]
+      - recipe[python::numpy]
+    attributes: {}

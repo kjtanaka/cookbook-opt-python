@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: python
+# Cookbook Name:: opt-python
 # Recipe:: pip
 # Author:: Koji Tanaka (<kj.tanaka@gmail.com>)
 #
@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-remote_file "#{node['python']['download_dir']}/get-pip.py" do
+remote_file "#{node['opt-python']['download_dir']}/get-pip.py" do
   source "https://bootstrap.pypa.io/get-pip.py"
   owner "root"
   group "root"
@@ -27,11 +27,11 @@ end
 
 execute "install_pip" do
   user "root"
-  cwd node['python']['download_dir']
+  cwd node['opt-python']['download_dir']
   command "python get-pip.py"
   environment(
-    "PYTHONHOME" => "#{node['python']['install_dir']}/python-#{node['python']['version']}",
-    "PATH" => "#{node['python']['install_dir']}/python-#{node['python']['version']}/bin:$PATH"
+    "PYTHONHOME" => "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}",
+    "PATH" => "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}/bin:$PATH"
   )
-  creates "#{node['python']['install_dir']}/python-#{node['python']['version']}/bin/pip"
+  creates "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}/bin/pip"
 end

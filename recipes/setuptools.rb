@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: python
+# Cookbook Name:: opt-python
 # Recipe:: setuptools
 # Author:: Koji Tanaka (<kj.tanaka@gmail.com>)
 #
@@ -20,7 +20,7 @@
 
 include_recipe "build-essential"
 
-remote_file "#{node['python']['download_dir']}/ez_setup.py" do
+remote_file "#{node['opt-python']['download_dir']}/ez_setup.py" do
   source "https://bootstrap.pypa.io/ez_setup.py"
   owner "root"
   group "root"
@@ -29,11 +29,11 @@ end
 
 execute "install_setuptools" do
   user "root"
-  cwd node['python']['download_dir']
+  cwd node['opt-python']['download_dir']
   command "python ez_setup.py"
   environment(
-    "PYTHONHOME" => "#{node['python']['install_dir']}/python-#{node['python']['version']}",
-    "PATH" => "#{node['python']['install_dir']}/python-#{node['python']['version']}/bin:$PATH"
+    "PYTHONHOME" => "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}",
+    "PATH" => "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}/bin:$PATH"
   )
-  creates "#{node['python']['install_dir']}/python-#{node['python']['version']}/bin/easy_install"
+  creates "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}/bin/easy_install"
 end

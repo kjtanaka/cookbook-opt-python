@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: python
+# Cookbook Name:: opt-python
 # Recipe:: numpy
 # Author:: Koji Tanaka (<kj.tanaka@gmail.com>)
 #
@@ -18,26 +18,26 @@
 # limitations under the License.
 #
 
-include_recipe 'python::cython'
+include_recipe 'opt-python::cython'
 
 package 'git'
 
-git "#{node['python']['download_dir']}/numpy" do
+git "#{node['opt-python']['download_dir']}/numpy" do
   repository "https://github.com/numpy/numpy.git"
   action :sync
 end
 
 bash "install_numpy" do
   user "root"
-  cwd "#{node['python']['download_dir']}/numpy"
+  cwd "#{node['opt-python']['download_dir']}/numpy"
   code <<-EOH
   python setup.py build
   python setup.py install
   EOH
   environment(
     "LD_LIBRARY_PATH" => node['numpy']['ld_library_path'],
-    "PYTHONHOME" => "#{node['python']['install_dir']}/python-#{node['python']['version']}",
-    "PATH" => "#{node['python']['install_dir']}/python-#{node['python']['version']}/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin"
+    "PYTHONHOME" => "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}",
+    "PATH" => "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin"
   )
-  creates "/opt/python-#{node['python']['version']}/lib/python2.7/site-packages/numpy"
+  creates "/opt/python-#{node['opt-python']['version']}/lib/python2.7/site-packages/numpy"
 end

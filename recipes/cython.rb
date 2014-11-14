@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: python
+# Cookbook Name:: opt-python
 # Recipe:: cython
 # Author:: Koji Tanaka (<kj.tanaka@gmail.com>)
 #
@@ -18,14 +18,14 @@
 # limitations under the License.
 #
 
-include_recipe 'python::pip'
+include_recipe 'opt-python::pip'
 
 execute "install_cython" do
   user "root"
   command "pip install Cython"
   environment(
-    "PYTHONHOME" => "#{node['python']['install_dir']}/python-#{node['python']['version']}",
-    "PATH" => "#{node['python']['install_dir']}/python-#{node['python']['version']}/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin"
+    "PYTHONHOME" => "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}",
+    "PATH" => "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin"
   )
-  creates "#{node['python']['install_dir']}/python-#{node['python']['version']}/bin/cython"
+  creates "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}/bin/cython"
 end

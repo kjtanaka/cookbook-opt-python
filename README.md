@@ -1,4 +1,4 @@
-python Cookbook
+opt-python Cookbook
 ===============
 This cookbook installs python from source.
 
@@ -10,7 +10,7 @@ Requirements
 
 Attributes
 ----------
-#### python::default
+#### opt-python::default
 <table>
   <tr>
     <th>Key</th>
@@ -19,19 +19,19 @@ Attributes
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['python']['version']</tt></td>
+    <td><tt>['opt-python']['version']</tt></td>
     <td>Text</td>
     <td>Python version</td>
     <td><tt>2.7.8</tt></td>
   </tr>
   <tr>
-    <td><tt>['python']['install_dir']</tt></td>
+    <td><tt>['opt-python']['install_dir']</tt></td>
     <td>Text</td>
     <td>Directory to install</td>
     <td><tt>/opt</tt></td>
   </tr>
   <tr>
-    <td><tt>['python']['download_dir']</tt></td>
+    <td><tt>['opt-python']['download_dir']</tt></td>
     <td>Text</td>
     <td>Directory to download source code</td>
     <td><tt>/root/source</tt></td>
@@ -40,28 +40,28 @@ Attributes
 
 Usage
 -----
-#### python::default
-Just include `python` in your node's `run_list`:
+#### opt-python::default
+Just include `opt-python` in your node's `run_list`:
 
 ```json
 {
   "name":"my_node",
   "run_list": [
-    "recipe[python]"
+    "recipe[opt-python]"
   ]
 }
 ```
 
-#### python::modulefile
-If you have [Environment Modules](http://modules.sourceforge.net/) on your machine, include `python::modulefile` in your node's `run_list` and set attrubutes, `modulefile_dir` and `default_version`:
+#### opt-python::modulefile
+If you have [Environment Modules](http://modules.sourceforge.net/) on your machine, include `opt-python::modulefile` in your node's `run_list` and set attrubutes, `modulefile_dir` and `default_version`:
 
 ```json
 {
   "name":"my_node",
   "run_list": [
-    "recipe[python::modulefile]"
+    "recipe[opt-python::modulefile]"
   ],
-  "python": {
+  "opt-python": {
     "modulefiles_dir": "/opt/module-3.2.10/Module/3.2.10/modulefile/tools",
     "default_version": "2.7.8"
   }

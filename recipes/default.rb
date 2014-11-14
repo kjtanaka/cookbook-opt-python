@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: python
+# Cookbook Name:: opt-python
 # Recipe:: default
 # Author:: Koji Tanaka (<kj.tanaka@gmail.com>)
 #
@@ -19,4 +19,4 @@
 #
 
 include_recipe "build-essential"
-include_recipe "python::_source"
+include_recipe "opt-python::_source"

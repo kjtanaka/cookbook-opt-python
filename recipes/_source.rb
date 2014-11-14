@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: python
+# Cookbook Name:: opt-python
 # Recipe:: _source
 # Author:: Koji Tanaka (<kj.tanaka@gmail.com>)
 #
@@ -18,48 +18,49 @@
 # limitations under the License.
 #
 
-node['python']['packages'].each do |pkg|
+node['opt-python']['packages'].each do |pkg|
   package pkg do
     action :install
   end
 end
 
-directory node['python']['install_dir'] do
+directory node['opt-python']['install_dir'] do
   owner "root"
   group "root"
   mode "0755"
   action :create
 end
 
-directory node['python']['download_dir'] do
+directory node['opt-python']['download_dir'] do
   owner "root"
   group "root"
-  mode "0755"
   action :create
 end
 
-remote_file "#{node['python']['download_dir']}/Python-#{node['python']['version']}.tgz" do
-  source node['python']['download_url']
+remote_file "#{node['opt-python']['download_dir']}/Python-#{node['opt-python']['version']}.tgz" do
+  source node['opt-python']['download_url']
   owner "root"
   group "root"
   mode "0644"
   action :create_if_missing
+  not_if { ::File.exists?("#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}") }
 end
 
-execute "extract_tarball" do
-  cwd node['python']['download_dir']
-  command "tar zxf Python-#{node['python']['version']}.tgz"
-  creates "Python-#{node['python']['version']}"
+execute "extract_python" do
+  cwd node['opt-python']['download_dir']
+  command "tar zxf Python-#{node['opt-python']['version']}.tgz"
+  creates "Python-#{node['opt-python']['version']}"
+  only_if { ::File.exists?("#{node['opt-python']['download_dir']}/Python-#{node['opt-python']['version']}.tgz")}
 end
 
-script "make_install" do
+script "install_python" do
   interpreter "bash"
-  cwd "#{node['python']['download_dir']}/Python-#{node['python']['version']}"
+  cwd "#{node['opt-python']['download_dir']}/Python-#{node['opt-python']['version']}"
   code <<-EOH
-  ./configure --prefix=#{node['python']['install_dir']}/python-#{node['python']['version']}
+  ./configure --prefix=#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}
   make
   make install
   EOH
-  creates "#{node['python']['install_dir']}/python-#{node['python']['version']}"
+  creates "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}"
 end
 

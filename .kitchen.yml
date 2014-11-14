@@ -18,31 +18,31 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[python::default]
+      - recipe[opt-python::default]
     attributes: {}
   - name: with-module
     run_list:
-      - recipe[python::default]
+      - recipe[opt-python::default]
       - recipe[environment-modules::default]
-      - recipe[python::modulefile]
+      - recipe[opt-python::modulefile]
     attributes: {}
   - name: setuptools
     run_list:
-      - recipe[python::default]
-      - recipe[python::setuptools]
+      - recipe[opt-python::default]
+      - recipe[opt-python::setuptools]
     attributes: {}
   - name: pip
     run_list:
-      - recipe[python::default]
-      - recipe[python::pip]
+      - recipe[opt-python::default]
+      - recipe[opt-python::pip]
     attributes: {}
   - name: cython
     run_list:
-      - recipe[python::default]
-      - recipe[python::cython]
+      - recipe[opt-python::default]
+      - recipe[opt-python::cython]
     attributes: {}
   - name: numpy
     run_list:
-      - recipe[python::default]
-      - recipe[python::numpy]
+      - recipe[opt-python::default]
+      - recipe[opt-python::numpy]
     attributes: {}

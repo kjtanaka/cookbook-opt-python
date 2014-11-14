@@ -1,6 +1,8 @@
 opt-python Cookbook
 ===============
-This cookbook installs python from source.
+This cookbook installs python from source as an optional software package. 
+The default path is `/opt/python-<version>`, so that it avoid mixing it up
+with your system's python package.
 
 Requirements
 ------------

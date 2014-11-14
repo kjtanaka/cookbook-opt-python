@@ -36,7 +36,7 @@ Attributes
     <td><tt>['opt-python']['download_dir']</tt></td>
     <td>Text</td>
     <td>Directory to download source code</td>
-    <td><tt>/root/source</tt></td>
+    <td><tt>/tmp</tt></td>
   </tr>
 </table>
 

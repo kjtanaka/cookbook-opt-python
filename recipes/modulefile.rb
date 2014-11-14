@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: python
+# Cookbook Name:: opt-python
 # Recipe:: modulefile
 # Author:: Koji Tanaka (<kj.tanaka@gmail.com>)
 #
@@ -18,23 +18,23 @@
 # limitations under the License.
 #
 
-directory "#{node['python']['modulefiles_dir']}/python" do
+directory "#{node['opt-python']['modulefiles_dir']}/python" do
   owner "root"
   group "root"
   mode "0755"
   action :create
 end
 
-template "#{node['python']['modulefiles_dir']}/python/#{node['python']['version']}" do
+template "#{node['opt-python']['modulefiles_dir']}/python/#{node['opt-python']['version']}" do
   source "modulefile.erb"
   variables(
-    :python_install_dir => node['python']['install_dir']
+    :python_install_dir => node['opt-python']['install_dir']
   )
 end
 
-template "#{node['python']['modulefiles_dir']}/python/.version" do
+template "#{node['opt-python']['modulefiles_dir']}/python/.version" do
   source "dot.version.erb"
   variables(
-    :python_default_version => node['python']['default_version']
+    :python_default_version => node['opt-python']['default_version']
   )
 end

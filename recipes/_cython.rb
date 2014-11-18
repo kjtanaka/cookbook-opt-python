@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: opt-python
-# Recipe:: cython
+# Recipe:: _cython
 # Author:: Koji Tanaka (<kj.tanaka@gmail.com>)
 #
 # Copyright 2014, FutureGrid Project, Indiana University
@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-include_recipe 'opt-python::pip'
+include_recipe 'opt-python::_pip'
 
 execute "install_cython" do
   user "root"

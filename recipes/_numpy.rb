@@ -18,9 +18,13 @@
 # limitations under the License.
 #
 
-include_recipe 'opt-python::cython'
+include_recipe 'opt-python::_cython'
 
 package 'git'
+package 'gcc-gfortran'
+package 'blas-devel'
+package 'lapack-devel'
+package 'atlas-devel'
 
 git "#{node['opt-python']['download_dir']}/numpy" do
   repository "https://github.com/numpy/numpy.git"

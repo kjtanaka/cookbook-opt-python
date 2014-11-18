@@ -18,6 +18,11 @@
 # limitations under the License.
 #
 
+case node['platform_family']
+when 'debian'
+  include_recipe 'apt'
+end
+
 node['opt-python']['packages'].each do |pkg|
   package pkg do
     action :install

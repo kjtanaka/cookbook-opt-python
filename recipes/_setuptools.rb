@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: opt-python
-# Recipe:: pip
+# Recipe:: _setuptools
 # Author:: Koji Tanaka (<kj.tanaka@gmail.com>)
 #
 # Copyright 2014, FutureGrid Project, Indiana University
@@ -18,20 +18,20 @@
 # limitations under the License.
 #
 
-remote_file "#{node['opt-python']['download_dir']}/get-pip.py" do
-  source "https://bootstrap.pypa.io/get-pip.py"
+remote_file "#{node['opt-python']['download_dir']}/ez_setup.py" do
+  source "https://bootstrap.pypa.io/ez_setup.py"
   owner "root"
   group "root"
   mode "0644"
 end
 
-execute "install_pip" do
+execute "install_setuptools" do
   user "root"
   cwd node['opt-python']['download_dir']
-  command "python get-pip.py"
+  command "python ez_setup.py"
   environment(
     "PYTHONHOME" => "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}",
     "PATH" => "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}/bin:$PATH"
   )
-  creates "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}/bin/pip"
+  creates "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}/bin/easy_install"
 end

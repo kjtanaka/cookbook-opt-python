@@ -18,21 +18,21 @@
 # limitations under the License.
 #
 
-directory "#{node['opt-python']['modulefiles_dir']}/python" do
+directory "#{node['opt-python']['modulefile_dir']}" do
   owner "root"
   group "root"
   mode "0755"
   action :create
 end
 
-template "#{node['opt-python']['modulefiles_dir']}/python/#{node['opt-python']['version']}" do
+template "#{node['opt-python']['modulefile_dir']}/#{node['opt-python']['version']}" do
   source "modulefile.erb"
   variables(
     :python_install_dir => node['opt-python']['install_dir']
   )
 end
 
-template "#{node['opt-python']['modulefiles_dir']}/python/.version" do
+template "#{node['opt-python']['modulefile_dir']}/.version" do
   source "dot.version.erb"
   variables(
     :python_default_version => node['opt-python']['default_version']

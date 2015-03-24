@@ -28,7 +28,9 @@ end
 execute "install_pip" do
   user "root"
   cwd node['opt-python']['download_dir']
-  command "python get-pip.py"
+  command "python get-pip.py --trusted-host pypi.python.org"
+  # --trusted-host is required for the issue on this link;
+  # http://stackoverflow.com/questions/28296476/python-pip-install-requires-server-hostname
   environment(
     "PYTHONHOME" => "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}",
     "PATH" => "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}/bin:$PATH"

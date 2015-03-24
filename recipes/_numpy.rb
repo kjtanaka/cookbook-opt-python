@@ -19,29 +19,40 @@
 #
 
 include_recipe 'opt-python::_cython'
+include_recipe 'opt-python::_pip'
 
-package 'git'
+#package 'git'
 package 'gcc-gfortran'
 package 'blas-devel'
 package 'lapack-devel'
 package 'atlas-devel'
 
-git "#{node['opt-python']['download_dir']}/numpy" do
-  repository "https://github.com/numpy/numpy.git"
-  action :sync
-end
-
-bash "install_numpy" do
+execute "install_numpy" do
   user "root"
-  cwd "#{node['opt-python']['download_dir']}/numpy"
-  code <<-EOH
-  python setup.py build
-  python setup.py install
-  EOH
+  command "pip install numpy"
   environment(
-    "LD_LIBRARY_PATH" => node['numpy']['ld_library_path'],
     "PYTHONHOME" => "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}",
     "PATH" => "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin"
   )
-  creates "/opt/python-#{node['opt-python']['version']}/lib/python2.7/site-packages/numpy"
+  creates "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}/lib/python2.7/site-packages/numpy"
 end
+
+#git "#{node['opt-python']['download_dir']}/numpy" do
+#  repository "https://github.com/numpy/numpy.git"
+#  action :sync
+#end
+
+#bash "install_numpy" do
+#  user "root"
+#  cwd "#{node['opt-python']['download_dir']}/numpy"
+#  code <<-EOH
+#  python setup.py build
+#  python setup.py install
+#  EOH
+#  environment(
+#    "LD_LIBRARY_PATH" => node['numpy']['ld_library_path'],
+#    "PYTHONHOME" => "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}",
+#    "PATH" => "#{node['opt-python']['install_dir']}/python-#{node['opt-python']['version']}/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin"
+#  )
+#  creates "/opt/python-#{node['opt-python']['version']}/lib/python2.7/site-packages/numpy"
+#end

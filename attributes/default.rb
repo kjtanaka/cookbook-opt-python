@@ -3,9 +3,6 @@ default['opt-python']['install_dir'] = "/opt"
 default['opt-python']['download_dir'] = "/tmp"
 default['opt-python']['download_url'] = "http://www.python.org/ftp/python/#{node['opt-python']['version']}/Python-#{node['opt-python']['version']}.tgz"
 
-# Additional recipes
-default['opt-python']['include_recipes'] = %w[_pip _setuptools]
-
 # Generate modulefile
 default['opt-python']['gen_modulefile'] = false
 

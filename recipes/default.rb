@@ -20,10 +20,7 @@
 
 include_recipe "build-essential"
 include_recipe "opt-python::_source"
-
-node['opt-python']['include_recipes'].each do |recipe|
-  include_recipe "opt-python::#{recipe}"
-end
+include_recipe "opt-python::_pip"
 
 if node['opt-python']['gen_modulefile']
   include_recipe 'opt-python::_modulefile'
